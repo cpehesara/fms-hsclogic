@@ -1,16 +1,50 @@
-# React + Vite
+<div align="center">
+  <img src="public/logo.png" alt="HSClogic Logo" width="80" />
+  <h1>HSClogic Finance Management System</h1>
+  <p>A production-grade financial operations frontend built for HSClogic Pvt. Ltd.</p>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+  ![React](https://img.shields.io/badge/React-18-61DAFB?style=flat-square&logo=react)
+  ![Vite](https://img.shields.io/badge/Vite-5-646CFF?style=flat-square&logo=vite)
+  ![TailwindCSS](https://img.shields.io/badge/Tailwind-3-06B6D4?style=flat-square&logo=tailwindcss)
+  ![License](https://img.shields.io/badge/License-Private-red?style=flat-square)
+</div>
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Overview
 
-## React Compiler
+The **HSClogic Finance Management System (FMS)** is a fully responsive, dark-themed web application designed to manage the core financial operations of HSClogic — including invoice generation, employee salary structures, and monthly payroll processing.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+This project was developed as a technical internship assignment, implementing all functional requirements defined in the provided SRS and FRS documentation. The implementation covers the complete frontend/UI layer with mock data, structured for seamless backend integration in future phases.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Features
+
+### Dashboard
+- Financial summary cards — total revenue, invoice counts, overdue alerts
+- Revenue vs Payroll trend chart (6-month area chart)
+- Invoice status distribution (donut chart)
+- Recent invoice activity feed
+- Payroll summary with per-employee breakdown
+
+### Invoice Management
+- Full CRUD — create, view, edit, delete invoices
+- Dynamic line item rows with real-time auto-calculation
+- Invoice status lifecycle — Draft → Sent → Paid → Overdue
+- Search by client name or invoice number
+- Filter by status with live count badges
+- Form validation with clear error messages
+- Confirmation dialog before deletion
+- PDF export for each invoice
+
+### Employee Management
+- Employee records with full profile fields
+- Auto-generated employee IDs
+- Active / Inactive status management
+- Search and department filtering
+
+### Salary Management
+- Per-employee salary structure definition
+- Multiple allowance and deduction components
+- Auto-calculated net salary
