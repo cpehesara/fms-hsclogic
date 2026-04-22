@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  HSCLogic FMS — Design System
+  Brand reference: hsclogic.com
+  Logo accent: #00CC44 (bright green)
+  Base: dark charcoal #1E1E1E, white #FFFFFF
+*/
+
+/* ── Dark theme (default) ── */
+:root {
+  --bg:      #111214;
+  --surface: #18191d;
+  --raised:  #1f2024;
+  --border:  #2c2e33;
+  --text:    #e8eaed;
+  --sub:     #8b8f98;
+  --green:   #00cc44;
+  --green-dk:#00a835;
+  --red:     #e53935;
+  --amber:   #f59e0b;
+  --blue:    #3b82f6;
+}
+
+/* ── Light theme ── */
+:root.light {
+  --bg:      #f4f5f7;
+  --surface: #ffffff;
+  --raised:  #f0f2f5;
+  --border:  #dde1e7;
+  --text:    #1e1e1e;
+  --sub:     #5f6368;
+  --green:   #00a835;
+  --green-dk:#008c2c;
+  --red:     #d32f2f;
+  --amber:   #d97706;
+  --blue:    #2563eb;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: var(--sub); }
+
+/* Smooth transitions on theme-sensitive props only */
+body, body * {
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.15s ease;
+}

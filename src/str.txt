@@ -1,0 +1,60 @@
+Folder PATH listing
+Volume serial number is D426-A62F
+D:.
+|   App.jsx
+|   index.css
+|   main.jsx
+|   str.txt
+|   
++---assets
+|       logo.png
+|       
++---components
+|   +---layout
+|   |       Layout.jsx
+|   |       Sidebar.jsx
+|   |       Topbar.jsx
+|   |       
+|   \---ui
+|           Badge.jsx
+|           Button.jsx
+|           Card.jsx
+|           ConfirmDialog.jsx
+|           Input.jsx
+|           Modal.jsx
+|           
++---context
+|       EmployeeContext.jsx
+|       InvoiceContext.jsx
+|       PayrollContext.jsx
+|       
++---data
+|       mockData.js
+|       mockEmployees.js
+|       mockInvoices.js
+|       mockPayroll.js
+|       
++---features
+|   +---dashboard
+|   |       DashboardPage.jsx
+|   |       
+|   +---employees
+|   |       EmployeesPage.jsx
+|   |       
+|   +---invoices
+|   |       ImvoicesPage.jsx
+|   |       
+|   +---payroll
+|   |       PayrollPage.jsx
+|   |       
+|   \---salary
+|           SalaryPage.jsx
+|           
++---router
+|       AppRouter.jsx
+|       
+\---utils
+        calculations.js
+        formatters.js
+        pdfGenerator.js
+        
