@@ -1,5 +1,7 @@
 <div align="center">
-  <img src="public/logo.png" alt="HSClogic Logo" width="80" />
+  <a href="https://hsclogic.com">
+    <img src="src/assets/logo.png" alt="HSClogic Logo" width="80" />
+  </a>
   <h1>HSClogic Finance Management System</h1>
   <p>A production-grade financial operations frontend built for HSClogic Pvt. Ltd.</p>
 
