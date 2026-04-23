@@ -1,3 +1,14 @@
+/**
+ * @file Badge.jsx
+ * @description Inline status pill for invoice, employee, and payroll statuses.
+ *
+ * Colour mappings use hard-coded dark-theme values intentionally — the badge
+ * colours are designed for high contrast against dark surfaces and remain
+ * legible in light mode due to the semi-transparent backgrounds.
+ *
+ * Recognised status values: Draft, Sent, Paid, Overdue, Active, Inactive,
+ * Finalized, Pending. Unknown values fall back to the Draft style.
+ */
 const styles = {
   Draft:     "bg-[#1e2024] text-[#8b8f98] border-[#2c2e33]",
   Sent:      "bg-[#0f1e38] text-[#60a5fa] border-[#1a3060]",

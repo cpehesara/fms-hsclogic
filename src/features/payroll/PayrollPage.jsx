@@ -38,7 +38,7 @@ async function generatePayrollReportPDF(payroll) {
   doc.setTextColor(...C.accent);
   doc.setFont("helvetica", "bold");
   doc.setFontSize(13);
-  doc.text("HSCLogic", L, 18);
+  doc.text("HSClogic", L, 18);
 
   doc.setTextColor(...C.light);
   doc.setFont("helvetica", "normal");
@@ -138,7 +138,7 @@ async function generatePayrollReportPDF(payroll) {
   doc.setTextColor(...C.light);
   doc.setFont("helvetica", "normal");
   doc.setFontSize(7);
-  doc.text("HSCLogic Finance Management System — Payroll Report", L, H - 10);
+  doc.text("HSClogic Finance Management System — Payroll Report", L, H - 10);
   doc.text(new Date().toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" }), R, H - 10, { align: "right" });
 
   doc.save(`Payroll-${payroll.period.replace(/\s+/g, "-")}.pdf`);
@@ -158,7 +158,7 @@ function PayslipModal({ record, period, onClose }) {
         <Badge status="Finalized" />
       </div>
 
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         <div className="border border-brand-border rounded p-3.5">
           <p className="text-brand-green text-xs font-medium mb-2.5">Earnings</p>
           <div className="space-y-1.5 text-sm">
@@ -232,7 +232,7 @@ function PayrollDetail({ payroll, onFinalize, onClose, isAdmin, currentEmployeeI
   return (
     <div className="space-y-4">
       {!isEmployee && (
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           {[
             { label: "Employees", value: payroll.employeeCount },
             { label: "Total Payout", value: formatCurrency(payroll.totalPayout), green: true },
@@ -249,33 +249,35 @@ function PayrollDetail({ payroll, onFinalize, onClose, isAdmin, currentEmployeeI
         </div>
       )}
 
-      <div className="border border-brand-border rounded overflow-hidden">
-        <div className="grid grid-cols-12 gap-0 px-4 py-2 bg-brand-raised text-[10px] text-brand-sub font-medium uppercase tracking-wider border-b border-brand-border">
-          <span className="col-span-4">Employee</span>
-          <span className="col-span-2 text-right">Basic</span>
-          <span className="col-span-2 text-right">Allow.</span>
-          <span className="col-span-2 text-right">Deduct.</span>
-          <span className="col-span-1 text-right">Net</span>
-          <span className="col-span-1" />
-        </div>
-        {visibleRecords.map(rec => (
-          <div key={rec.employeeId} className="grid grid-cols-12 gap-0 px-4 py-2.5 border-b border-brand-border/40 last:border-0 hover:bg-brand-raised/40 transition-colors items-center">
-            <div className="col-span-4">
-              <p className="text-brand-text text-sm font-medium">{rec.employeeName}</p>
-              <p className="text-brand-sub text-xs">{rec.employeeId}</p>
-            </div>
-            <span className="col-span-2 text-right text-brand-sub text-sm tabular-nums">{formatCurrency(rec.basic)}</span>
-            <span className="col-span-2 text-right text-brand-green text-sm tabular-nums">+{formatCurrency(rec.allowances)}</span>
-            <span className="col-span-2 text-right text-brand-red text-sm tabular-nums">-{formatCurrency(rec.deductions)}</span>
-            <span className="col-span-1 text-right text-brand-text text-sm font-bold tabular-nums">{formatCurrency(rec.net)}</span>
-            <div className="col-span-1 flex justify-end">
-              <button onClick={() => setViewRecord(rec)}
-                className="text-brand-sub text-xs hover:text-brand-text transition-colors">
-                View
-              </button>
-            </div>
+      <div className="border border-brand-border rounded overflow-hidden overflow-x-auto">
+        <div className="min-w-[420px]">
+          <div className="grid grid-cols-12 gap-0 px-4 py-2 bg-brand-raised text-[10px] text-brand-sub font-medium uppercase tracking-wider border-b border-brand-border">
+            <span className="col-span-4">Employee</span>
+            <span className="col-span-2 text-right">Basic</span>
+            <span className="col-span-2 text-right">Allow.</span>
+            <span className="col-span-2 text-right">Deduct.</span>
+            <span className="col-span-1 text-right">Net</span>
+            <span className="col-span-1" />
           </div>
-        ))}
+          {visibleRecords.map(rec => (
+            <div key={rec.employeeId} className="grid grid-cols-12 gap-0 px-4 py-2.5 border-b border-brand-border/40 last:border-0 hover:bg-brand-raised/40 transition-colors items-center">
+              <div className="col-span-4">
+                <p className="text-brand-text text-sm font-medium">{rec.employeeName}</p>
+                <p className="text-brand-sub text-xs">{rec.employeeId}</p>
+              </div>
+              <span className="col-span-2 text-right text-brand-sub text-sm tabular-nums">{formatCurrency(rec.basic)}</span>
+              <span className="col-span-2 text-right text-brand-green text-sm tabular-nums">+{formatCurrency(rec.allowances)}</span>
+              <span className="col-span-2 text-right text-brand-red text-sm tabular-nums">-{formatCurrency(rec.deductions)}</span>
+              <span className="col-span-1 text-right text-brand-text text-sm font-bold tabular-nums">{formatCurrency(rec.net)}</span>
+              <div className="col-span-1 flex justify-end">
+                <button onClick={() => setViewRecord(rec)}
+                  className="text-brand-sub text-xs hover:text-brand-text transition-colors">
+                  View
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
       <div className="flex gap-2.5 pt-1">
@@ -363,7 +365,7 @@ export default function PayrollPage() {
   return (
     <div className="space-y-4 animate-fade-in">
       {/* Summary */}
-      <div className="grid grid-cols-2 xl:grid-cols-4 gap-3">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {[
           { label: "Total Records",   value: payrolls.length,                                       cls: "text-brand-text" },
           { label: "Finalized",       value: payrolls.filter(p => p.status === "Finalized").length, cls: "text-[#60a5fa]" },

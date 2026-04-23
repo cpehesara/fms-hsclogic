@@ -1,3 +1,18 @@
+/**
+ * @file AuthContext.jsx
+ * @description Authentication state and role-based permission logic.
+ *
+ * Exposes: user, login, logout, loginError, setLoginError, can(action)
+ *
+ * The `can(action)` helper is the single source of truth for permission
+ * checks throughout the UI. Components call it to conditionally render
+ * write actions rather than comparing role strings directly, keeping
+ * permission logic centralised here.
+ *
+ * NOTE: Credentials are stored in a mock array for demonstration purposes.
+ * In a production system this module should be replaced with JWT-based
+ * authentication against a secure backend API.
+ */
 import { createContext, useContext, useState } from "react";
 
 const AuthContext = createContext(null);

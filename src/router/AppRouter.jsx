@@ -1,3 +1,17 @@
+/**
+ * @file AppRouter.jsx
+ * @description Declarative client-side routing for HSClogic FMS.
+ *
+ * Route guards:
+ *   ProtectedRoute — redirects unauthenticated users to /login
+ *   GuestRoute     — redirects authenticated users away from /login to /dashboard
+ *   RoleRoute      — redirects authenticated users who lack the required role to /dashboard
+ *
+ * The Layout route wraps all authenticated pages, rendering the persistent
+ * sidebar and topbar shell with page content in an <Outlet>.
+ *
+ * All unknown paths are redirected to /dashboard (or /login if unauthenticated).
+ */
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 

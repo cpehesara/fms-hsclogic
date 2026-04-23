@@ -1,3 +1,15 @@
+/**
+ * @file Input.jsx
+ * @description Labelled form input with integrated error, hint, and
+ * optional prefix/suffix adornment support.
+ *
+ * @prop {string}  label        - Field label rendered above the input.
+ * @prop {string}  error        - Validation error message shown in red below.
+ * @prop {string}  hint         - Helper text shown below (only when no error).
+ * @prop {boolean} required     - Appends a red asterisk to the label.
+ * @prop {string}  prefix       - Decorative text overlaid at the left edge (e.g. "LKR").
+ * @prop {string}  suffix       - Decorative text overlaid at the right edge.
+ */
 function Input({ label, error, hint, type = "text", className = "", inputClassName = "", required, prefix, suffix, ...props }) {
   return (
     <div className={`flex flex-col gap-1 ${className}`}>

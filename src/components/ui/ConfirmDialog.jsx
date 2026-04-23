@@ -1,3 +1,14 @@
+/**
+ * @file ConfirmDialog.jsx
+ * @description Blocking confirmation dialog for destructive actions.
+ *
+ * Always pair with a descriptive `message` prop that clearly states the
+ * consequence (e.g. "This cannot be undone"). Pass `danger={true}` to
+ * render the confirm button in the danger variant (red outline).
+ *
+ * Clicking the backdrop or the Cancel button calls `onClose` without
+ * invoking `onConfirm`.
+ */
 import Button from "./Button";
 
 function ConfirmDialog({ isOpen, onClose, onConfirm, title, message, confirmLabel = "Confirm", danger = false }) {

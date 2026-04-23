@@ -308,7 +308,7 @@ export default function InvoicesPage() {
   return (
     <div className="space-y-4 animate-fade-in">
       {/* Stats strip */}
-      <div className="grid grid-cols-2 xl:grid-cols-4 gap-3">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {[
           { label: "Total",   value: stats.total,   cls: "text-brand-text" },
           { label: "Paid",    value: stats.paid,    cls: "text-brand-green" },
@@ -323,16 +323,14 @@ export default function InvoicesPage() {
       </div>
 
       {/* Toolbar */}
-      <div className="flex flex-col sm:flex-row gap-2.5">
-        <div className="relative flex-1">
-          <input value={search} onChange={e => setSearch(e.target.value)}
-            placeholder="Search by client name or invoice number…"
-            className="w-full px-3.5 py-2 bg-brand-surface border border-brand-border rounded-md text-brand-text text-sm placeholder:text-brand-sub/40 focus:outline-none focus:ring-2 focus:ring-brand-green/30 focus:border-brand-green/50 transition-colors" />
-        </div>
-        <div className="flex gap-2">
-          <div className="relative">
+      <div className="flex flex-col gap-2">
+        <input value={search} onChange={e => setSearch(e.target.value)}
+          placeholder="Search by client name or invoice number…"
+          className="w-full px-3.5 py-2 bg-brand-surface border border-brand-border rounded-md text-brand-text text-sm placeholder:text-brand-sub/40 focus:outline-none focus:ring-2 focus:ring-brand-green/30 focus:border-brand-green/50 transition-colors" />
+        <div className="flex gap-2 flex-wrap">
+          <div className="relative flex-1 min-w-[120px]">
             <select value={filterStatus} onChange={e => setFilter(e.target.value)}
-              className="appearance-none pl-3 pr-7 py-2 bg-brand-surface border border-brand-border rounded-md text-brand-text text-sm focus:outline-none focus:ring-2 focus:ring-brand-green/30 transition-colors">
+              className="w-full appearance-none pl-3 pr-7 py-2 bg-brand-surface border border-brand-border rounded-md text-brand-text text-sm focus:outline-none focus:ring-2 focus:ring-brand-green/30 transition-colors">
               <option value="All">All Status</option>
               {STATUSES.map(s => <option key={s}>{s}</option>)}
             </select>
@@ -352,14 +350,17 @@ export default function InvoicesPage() {
       {/* Table */}
       <Card padding={false}>
         <div className="overflow-x-auto">
-          <table className="w-full">
+          <table className="w-full min-w-[520px]">
             <thead>
               <tr className="border-b border-brand-border bg-brand-raised/60">
-                {["Invoice #", "Client", "Service", "Issued", "Due", "Amount", "Status", ""].map(h => (
-                  <th key={h} className="px-4 py-2.5 text-left text-[10px] text-brand-sub uppercase tracking-wider font-medium whitespace-nowrap">
-                    {h}
-                  </th>
-                ))}
+                <th className="px-4 py-2.5 text-left text-[10px] text-brand-sub uppercase tracking-wider font-medium whitespace-nowrap">Invoice #</th>
+                <th className="px-4 py-2.5 text-left text-[10px] text-brand-sub uppercase tracking-wider font-medium whitespace-nowrap">Client</th>
+                <th className="px-4 py-2.5 text-left text-[10px] text-brand-sub uppercase tracking-wider font-medium whitespace-nowrap hidden sm:table-cell">Service</th>
+                <th className="px-4 py-2.5 text-left text-[10px] text-brand-sub uppercase tracking-wider font-medium whitespace-nowrap hidden md:table-cell">Issued</th>
+                <th className="px-4 py-2.5 text-left text-[10px] text-brand-sub uppercase tracking-wider font-medium whitespace-nowrap hidden sm:table-cell">Due</th>
+                <th className="px-4 py-2.5 text-left text-[10px] text-brand-sub uppercase tracking-wider font-medium whitespace-nowrap">Amount</th>
+                <th className="px-4 py-2.5 text-left text-[10px] text-brand-sub uppercase tracking-wider font-medium whitespace-nowrap">Status</th>
+                <th className="px-4 py-2.5 text-left text-[10px] text-brand-sub uppercase tracking-wider font-medium whitespace-nowrap"></th>
               </tr>
             </thead>
             <tbody>
@@ -373,12 +374,12 @@ export default function InvoicesPage() {
                 </tr>
               ) : filtered.map(inv => (
                 <tr key={inv.id} className="border-b border-brand-border/40 last:border-0 hover:bg-brand-raised/40 transition-colors">
-                  <td className="px-4 py-3 text-brand-text text-sm font-mono font-semibold">{inv.invoiceNumber}</td>
-                  <td className="px-4 py-3 text-brand-text text-sm font-medium">{inv.clientName}</td>
-                  <td className="px-4 py-3 text-brand-sub text-sm">{inv.serviceType}</td>
-                  <td className="px-4 py-3 text-brand-sub text-sm whitespace-nowrap">{formatDate(inv.issueDate)}</td>
-                  <td className="px-4 py-3 text-brand-sub text-sm whitespace-nowrap">{formatDate(inv.dueDate)}</td>
-                  <td className="px-4 py-3 text-brand-text text-sm font-semibold tabular-nums">{formatCurrency(inv.total)}</td>
+                  <td className="px-4 py-3 text-brand-text text-xs font-mono font-semibold whitespace-nowrap">{inv.invoiceNumber}</td>
+                  <td className="px-4 py-3 text-brand-text text-sm font-medium max-w-[120px] truncate">{inv.clientName}</td>
+                  <td className="px-4 py-3 text-brand-sub text-sm hidden sm:table-cell">{inv.serviceType}</td>
+                  <td className="px-4 py-3 text-brand-sub text-sm whitespace-nowrap hidden md:table-cell">{formatDate(inv.issueDate)}</td>
+                  <td className="px-4 py-3 text-brand-sub text-sm whitespace-nowrap hidden sm:table-cell">{formatDate(inv.dueDate)}</td>
+                  <td className="px-4 py-3 text-brand-text text-sm font-semibold tabular-nums whitespace-nowrap">{formatCurrency(inv.total)}</td>
                   <td className="px-4 py-3">
                     {canManage ? (
                       <button onClick={() => setStatusTarget(inv)} title="Change status" className="hover:opacity-75 transition-opacity">
@@ -388,32 +389,32 @@ export default function InvoicesPage() {
                       <Badge status={inv.status} />
                     )}
                   </td>
-                  <td className="px-4 py-3">
-                    <div className="flex items-center gap-3">
+                  <td className="px-3 py-3">
+                    <div className="flex items-center gap-2">
                       <button onClick={() => setViewInvoice(inv)}
-                        className="text-brand-sub text-xs hover:text-brand-text transition-colors">
+                        className="text-brand-sub text-xs hover:text-brand-text transition-colors whitespace-nowrap">
                         View
                       </button>
                       {canManage && (
                         <button onClick={() => setEditInvoice(inv)}
-                          className="text-brand-sub text-xs hover:text-brand-green transition-colors">
+                          className="text-brand-sub text-xs hover:text-brand-green transition-colors hidden sm:inline whitespace-nowrap">
                           Edit
                         </button>
                       )}
                       {canManage && (
                         <button onClick={() => handleDuplicate(inv)}
-                          className="text-brand-sub text-xs hover:text-brand-text transition-colors">
+                          className="text-brand-sub text-xs hover:text-brand-text transition-colors hidden md:inline whitespace-nowrap">
                           Copy
                         </button>
                       )}
                       <button onClick={() => handleDownload(inv)}
-                        className="text-brand-sub text-xs hover:text-brand-green transition-colors">
+                        className="text-brand-sub text-xs hover:text-brand-green transition-colors whitespace-nowrap">
                         PDF
                       </button>
                       {canManage && (
                         <button onClick={() => setDeleteTarget(inv)}
-                          className="text-brand-sub text-xs hover:text-brand-red transition-colors">
-                          Delete
+                          className="text-brand-sub text-xs hover:text-brand-red transition-colors hidden sm:inline whitespace-nowrap">
+                          Del
                         </button>
                       )}
                     </div>

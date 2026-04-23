@@ -1,3 +1,16 @@
+/**
+ * @file EmployeeContext.jsx
+ * @description Global state and CRUD operations for employee records and
+ * salary structures.
+ *
+ * Exposes: employees, activeEmployees, addEmployee, updateEmployee,
+ *          deactivateEmployee, activateEmployee, updateSalary,
+ *          getEmployee, calcNetSalary
+ *
+ * Salary updates via updateSalary only affect future payroll runs.
+ * Previously processed payroll records hold their own salary snapshots
+ * and are not retroactively altered when a structure changes.
+ */
 import { createContext, useContext, useState } from "react";
 import { mockEmployees } from "../data/mockEmployees";
 import { calcNetSalary } from "../utils/calculations";

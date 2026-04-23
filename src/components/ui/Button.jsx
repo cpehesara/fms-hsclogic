@@ -1,3 +1,17 @@
+/**
+ * @file Button.jsx
+ * @description Reusable button component with variant and size presets.
+ *
+ * Variants:
+ *   primary   — Solid brand-green, used for the primary call-to-action.
+ *   secondary — Outlined, used for secondary or cancel actions.
+ *   danger    — Red-tinted outline, used for destructive actions.
+ *   ghost     — No background, used for low-emphasis icon/text actions.
+ *
+ * Sizes: xs | sm | md (default) | lg
+ *
+ * All variants apply accessible focus rings and a disabled opacity state.
+ */
 function Button({
   children, onClick, variant = "primary", size = "md",
   disabled = false, type = "button", className = "", title = "",

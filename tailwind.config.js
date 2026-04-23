@@ -16,7 +16,6 @@ export default {
           red:     "var(--red)",
           amber:   "var(--amber)",
           blue:    "var(--blue)",
-          // legacy aliases so old code doesn't break
           elevated: "var(--raised)",
           muted:    "var(--sub)",
           danger:   "var(--red)",

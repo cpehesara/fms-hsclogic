@@ -1,3 +1,14 @@
+/**
+ * @file ThemeContext.jsx
+ * @description Light/dark theme management with localStorage persistence.
+ *
+ * Exposes: theme ("dark" | "light"), toggleTheme, isDark (boolean)
+ *
+ * Theme is applied by toggling the "light" and "dark" class on the root
+ * <html> element. All colour values are CSS custom properties defined in
+ * index.css under :root (dark, default) and :root.light (light override),
+ * so switching is instantaneous with no FOUC.
+ */
 import { createContext, useContext, useState, useEffect } from "react";
 
 const ThemeContext = createContext(null);

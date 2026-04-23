@@ -1,3 +1,18 @@
+/**
+ * @file PayrollContext.jsx
+ * @description Global state and operations for monthly payroll processing.
+ *
+ * Exposes: payrolls, getPayroll, getPayrollByPeriod, processPayroll,
+ *          finalizePayroll, deletePayroll
+ *
+ * Key invariants enforced here:
+ * - Only one payroll record may exist per month/year combination.
+ * - Finalized payrolls are permanently read-only; no mutation is permitted
+ *   after finalization (enforced at the UI layer via role checks and
+ *   confirmed by the status guard on deletePayroll in the UI).
+ * - Each payroll record stores a complete salary snapshot at processing
+ *   time, decoupled from the live employee salary structures.
+ */
 import { createContext, useContext, useState } from "react";
 import { mockPayroll } from "../data/mockPayroll";
 import { calcNetSalary } from "../utils/calculations";

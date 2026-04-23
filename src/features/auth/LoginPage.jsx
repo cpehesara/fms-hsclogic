@@ -37,8 +37,8 @@ export default function LoginPage() {
       {/* Left panel */}
       <div className="hidden lg:flex w-80 flex-col justify-between border-r border-brand-border p-8 bg-brand-surface">
         <div className="flex items-center gap-2.5">
-          <img src={logo} alt="HSCLogic" className="w-6 h-6 object-contain flex-shrink-0" />
-          <span className="text-brand-text font-semibold text-sm tracking-tight">HSCLogic</span>
+          <img src={logo} alt="HSClogic" className="w-6 h-6 object-contain flex-shrink-0" />
+          <span className="text-brand-text font-semibold text-sm tracking-tight">HSClogic</span>
         </div>
 
         <div className="space-y-4">
@@ -50,7 +50,7 @@ export default function LoginPage() {
           </p>
         </div>
 
-        <p className="text-brand-sub/40 text-xs">© 2026 HSCLogic. All rights reserved.</p>
+        <p className="text-brand-sub/40 text-xs">© 2026 HSClogic. All rights reserved.</p>
       </div>
 
       {/* Right panel */}
@@ -65,8 +65,8 @@ export default function LoginPage() {
         <div className="w-full max-w-sm animate-slide-up">
           {/* Mobile logo */}
           <div className="flex items-center gap-2 mb-8 lg:hidden">
-            <img src={logo} alt="HSCLogic" className="w-6 h-6 object-contain" />
-            <span className="text-brand-text font-semibold text-sm">HSCLogic FMS</span>
+            <img src={logo} alt="HSClogic" className="w-6 h-6 object-contain" />
+            <span className="text-brand-text font-semibold text-sm">HSClogic FMS</span>
           </div>
 
           <div className="mb-7">
@@ -142,11 +142,11 @@ export default function LoginPage() {
                   onClick={() => fillDemo(acc)}
                   className="w-full flex items-center justify-between px-3.5 py-2.5 rounded-md border border-brand-border bg-brand-raised hover:bg-brand-surface hover:border-brand-green/30 text-left transition-all"
                 >
-                  <div>
+                  <div className="min-w-0 flex-1">
                     <p className="text-brand-text text-xs font-medium leading-tight">{acc.role}</p>
-                    <p className="text-brand-sub text-xs mt-0.5">{acc.email}</p>
+                    <p className="text-brand-sub text-xs mt-0.5 truncate">{acc.email}</p>
                   </div>
-                  <span className="text-brand-sub/60 text-xs font-mono">{acc.password}</span>
+                  <span className="text-brand-sub/60 text-xs font-mono flex-shrink-0 ml-2">{acc.password}</span>
                 </button>
               ))}
             </div>

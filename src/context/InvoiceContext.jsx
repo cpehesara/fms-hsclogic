@@ -1,3 +1,15 @@
+/**
+ * @file InvoiceContext.jsx
+ * @description Global state and CRUD operations for invoices.
+ *
+ * Exposes: invoices, createInvoice, updateInvoice, deleteInvoice,
+ *          updateStatus, getInvoice
+ *
+ * Overdue detection is handled as derived state via useMemo rather than
+ * being stored persistently. On every render, any invoice in "Draft" or
+ * "Sent" status whose dueDate is in the past is surfaced as "Overdue"
+ * automatically — no scheduled job or manual flag update is needed.
+ */
 import { createContext, useContext, useState, useMemo } from "react";
 import { mockInvoices } from "../data/mockInvoices";
 import { calcInvoiceTotal, isOverdue } from "../utils/calculations";

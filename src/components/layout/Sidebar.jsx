@@ -10,21 +10,38 @@ const navItems = [
   { path: "/payroll",   label: "Payroll",         roles: ["Admin", "Finance Manager", "Employee"] },
 ];
 
-function Sidebar() {
+function Sidebar({ isOpen, onClose }) {
   const location = useLocation();
   const { user, logout } = useAuth();
 
   const visibleNav = navItems.filter(item => !user || item.roles.includes(user.role));
 
   return (
-    <aside className="w-56 h-screen bg-brand-surface border-r border-brand-border flex flex-col fixed left-0 top-0 z-40">
+    <aside className={`
+      fixed left-0 top-0 z-40 h-screen w-56 bg-brand-surface border-r border-brand-border
+      flex flex-col transition-transform duration-200 ease-in-out
+      ${isOpen ? "translate-x-0" : "-translate-x-full"}
+      md:translate-x-0
+    `}>
       {/* Logo */}
-      <div className="flex items-center gap-2.5 px-5 py-4 border-b border-brand-border">
-        <img src={logo} alt="HSCLogic" className="w-6 h-6 object-contain flex-shrink-0" />
-        <div className="min-w-0">
-          <p className="text-brand-text font-semibold text-sm leading-tight tracking-tight">HSCLogic</p>
-          <p className="text-brand-sub text-xs leading-tight">Finance Management</p>
+      <div className="flex items-center justify-between px-5 py-4 border-b border-brand-border">
+        <div className="flex items-center gap-2.5 min-w-0">
+          <img src={logo} alt="HSClogic" className="w-6 h-6 object-contain flex-shrink-0" />
+          <div className="min-w-0">
+            <p className="text-brand-text font-semibold text-sm leading-tight tracking-tight truncate">HSClogic</p>
+            <p className="text-brand-sub text-xs leading-tight truncate">Finance Management</p>
+          </div>
         </div>
+        {/* Mobile close button */}
+        <button
+          onClick={onClose}
+          className="md:hidden text-brand-sub hover:text-brand-text transition-colors p-1 -mr-1 flex-shrink-0"
+          aria-label="Close menu"
+        >
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M12 4L4 12M4 4l8 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+          </svg>
+        </button>
       </div>
 
       {/* Nav */}
@@ -39,7 +56,8 @@ function Sidebar() {
               <li key={path}>
                 <NavLink
                   to={path}
-                  className={`flex items-center px-2.5 py-2 rounded-md text-sm font-medium transition-colors relative ${
+                  onClick={onClose}
+                  className={`flex items-center px-2.5 py-2.5 md:py-2 rounded-md text-sm font-medium transition-colors relative ${
                     isActive
                       ? "bg-brand-green/10 text-brand-green"
                       : "text-brand-sub hover:bg-brand-raised hover:text-brand-text"
@@ -61,11 +79,11 @@ function Sidebar() {
         <div className="px-3 py-3 border-t border-brand-border space-y-0.5">
           <div className="px-2.5 py-2">
             <p className="text-brand-text text-xs font-semibold leading-tight truncate">{user.name}</p>
-            <p className="text-brand-sub text-xs leading-tight mt-0.5">{user.role}</p>
+            <p className="text-brand-sub text-xs leading-tight mt-0.5 truncate">{user.role}</p>
           </div>
           <button
-            onClick={logout}
-            className="w-full text-left px-2.5 py-2 rounded-md text-brand-sub text-sm hover:text-brand-red hover:bg-brand-red/5 transition-colors"
+            onClick={() => { logout(); onClose(); }}
+            className="w-full text-left px-2.5 py-2.5 md:py-2 rounded-md text-brand-sub text-sm hover:text-brand-red hover:bg-brand-red/5 transition-colors"
           >
             Sign out
           </button>

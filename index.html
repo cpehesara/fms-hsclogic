@@ -2,11 +2,74 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>fms-hsclogic</title>
+
+    <!-- Primary SEO -->
+    <title>HSClogic FMS — Finance Management System</title>
+    <meta name="description" content="HSClogic Finance Management System — manage invoices, employee records, salary structures, and monthly payroll in one unified platform." />
+    <meta name="keywords" content="finance management, invoices, payroll, salary, employee management, HSClogic, FMS" />
+    <meta name="author" content="HSClogic" />
+    <meta name="robots" content="noindex, nofollow" />
+
+    <!-- Canonical -->
+    <link rel="canonical" href="/" />
+
+    <!-- Open Graph (social sharing) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="HSClogic FMS" />
+    <meta property="og:title" content="HSClogic FMS — Finance Management System" />
+    <meta property="og:description" content="Manage invoices, employee records, salary structures, and monthly payroll from one unified dashboard." />
+    <meta property="og:url" content="/" />
+    <meta property="og:image" content="/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_LK" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="HSClogic FMS — Finance Management System" />
+    <meta name="twitter:description" content="Manage invoices, employee records, salary structures, and monthly payroll from one unified dashboard." />
+    <meta name="twitter:image" content="/og-image.png" />
+
+    <!-- Theme color (browser chrome on mobile) -->
+    <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f4f5f7" media="(prefers-color-scheme: light)" />
+
+    <!-- PWA / app capability hints -->
+    <meta name="application-name" content="HSClogic FMS" />
+    <meta name="apple-mobile-web-app-title" content="HSClogic FMS" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="mobile-web-app-capable" content="yes" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/src/assets/logo.png" />
+    <link rel="shortcut icon" href="/src/assets/logo.png" />
+
+    <!-- Preconnect to Google Fonts for faster font loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Structured data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "HSClogic Finance Management System",
+      "description": "A web-based finance management system for managing invoices, employee records, salary structures, and monthly payroll.",
+      "url": "/",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Any",
+      "author": {
+        "@type": "Organization",
+        "name": "HSClogic",
+        "url": "https://hsclogic.com"
+      }
+    }
+    </script>
   </head>
   <body>
+    <!-- React SPA mount point -->
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

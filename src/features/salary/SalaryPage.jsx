@@ -165,7 +165,7 @@ export default function SalaryPage() {
   return (
     <div className="space-y-4 animate-fade-in">
       {/* Summary */}
-      <div className="grid grid-cols-3 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
         <div className="bg-brand-surface border border-brand-border rounded-xl px-4 py-3.5">
           <p className="text-brand-sub text-xs">Monthly Payroll</p>
           <p className="text-brand-text font-bold text-lg tabular-nums mt-1">{formatCurrency(totalPayroll)}</p>
@@ -182,25 +182,28 @@ export default function SalaryPage() {
 
       {/* Toolbar */}
       <div className="flex gap-2.5">
-        <div className="flex-1">
-          <input value={search} onChange={e => setSearch(e.target.value)}
-            placeholder="Search by name, department, or designation…"
-            className="w-full px-3.5 py-2 bg-brand-surface border border-brand-border rounded-md text-brand-text text-sm placeholder:text-brand-sub/40 focus:outline-none focus:ring-2 focus:ring-brand-green/30 focus:border-brand-green/50 transition-colors" />
-        </div>
+        <input value={search} onChange={e => setSearch(e.target.value)}
+          placeholder="Search by name, department, or designation…"
+          className="flex-1 px-3.5 py-2 bg-brand-surface border border-brand-border rounded-md text-brand-text text-sm placeholder:text-brand-sub/40 focus:outline-none focus:ring-2 focus:ring-brand-green/30 focus:border-brand-green/50 transition-colors" />
         <Button variant="ghost" size="sm" onClick={handleExportReport}>
-          Export Report
+          Export
         </Button>
       </div>
 
       {/* Salary table */}
       <Card padding={false}>
         <div className="overflow-x-auto">
-          <table className="w-full">
+          <table className="w-full min-w-[480px]">
             <thead>
               <tr className="border-b border-brand-border bg-brand-raised/60">
-                {["Employee", "Department", "Basic", "Allowances", "Deductions", "Net Salary", "Status", ""].map(h => (
-                  <th key={h} className="px-4 py-2.5 text-left text-[10px] text-brand-sub uppercase tracking-wider font-medium whitespace-nowrap">{h}</th>
-                ))}
+                <th className="px-4 py-2.5 text-left text-[10px] text-brand-sub uppercase tracking-wider font-medium whitespace-nowrap">Employee</th>
+                <th className="px-4 py-2.5 text-left text-[10px] text-brand-sub uppercase tracking-wider font-medium whitespace-nowrap hidden sm:table-cell">Department</th>
+                <th className="px-4 py-2.5 text-left text-[10px] text-brand-sub uppercase tracking-wider font-medium whitespace-nowrap hidden sm:table-cell">Basic</th>
+                <th className="px-4 py-2.5 text-left text-[10px] text-brand-sub uppercase tracking-wider font-medium whitespace-nowrap hidden md:table-cell">Allow.</th>
+                <th className="px-4 py-2.5 text-left text-[10px] text-brand-sub uppercase tracking-wider font-medium whitespace-nowrap hidden md:table-cell">Deduct.</th>
+                <th className="px-4 py-2.5 text-left text-[10px] text-brand-sub uppercase tracking-wider font-medium whitespace-nowrap">Net Salary</th>
+                <th className="px-4 py-2.5 text-left text-[10px] text-brand-sub uppercase tracking-wider font-medium whitespace-nowrap hidden sm:table-cell">Status</th>
+                <th className="px-4 py-2.5 text-left text-[10px] text-brand-sub uppercase tracking-wider font-medium whitespace-nowrap"></th>
               </tr>
             </thead>
             <tbody>
@@ -227,15 +230,15 @@ export default function SalaryPage() {
                         </div>
                       </div>
                     </td>
-                    <td className="px-4 py-3 text-brand-sub text-sm">{emp.department}</td>
-                    <td className="px-4 py-3 text-brand-text text-sm tabular-nums">{formatCurrency(emp.salary?.basic ?? 0)}</td>
-                    <td className="px-4 py-3 text-brand-green text-sm tabular-nums">+{formatCurrency(totalA)}</td>
-                    <td className="px-4 py-3 text-brand-red text-sm tabular-nums">-{formatCurrency(totalD)}</td>
-                    <td className="px-4 py-3 text-brand-text text-sm font-bold tabular-nums">{formatCurrency(net)}</td>
-                    <td className="px-4 py-3"><Badge status={emp.status} /></td>
+                    <td className="px-4 py-3 text-brand-sub text-sm hidden sm:table-cell">{emp.department}</td>
+                    <td className="px-4 py-3 text-brand-text text-sm tabular-nums hidden sm:table-cell">{formatCurrency(emp.salary?.basic ?? 0)}</td>
+                    <td className="px-4 py-3 text-brand-green text-sm tabular-nums hidden md:table-cell">+{formatCurrency(totalA)}</td>
+                    <td className="px-4 py-3 text-brand-red text-sm tabular-nums hidden md:table-cell">-{formatCurrency(totalD)}</td>
+                    <td className="px-4 py-3 text-brand-text text-sm font-bold tabular-nums whitespace-nowrap">{formatCurrency(net)}</td>
+                    <td className="px-4 py-3 hidden sm:table-cell"><Badge status={emp.status} /></td>
                     <td className="px-4 py-3">
                       <button onClick={() => setEditTarget(emp)}
-                        className="text-brand-sub text-xs hover:text-brand-green transition-colors">
+                        className="text-brand-sub text-xs hover:text-brand-green transition-colors whitespace-nowrap">
                         Edit
                       </button>
                     </td>
